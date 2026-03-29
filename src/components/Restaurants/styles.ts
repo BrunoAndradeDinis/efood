@@ -1,43 +1,33 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
 
-export const Principal = styled.main`
+export const RestaurantsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-  background-color: ${colors.bgColor};
-  height: 1490px;
-`
+  gap: 80px;
+  padding: 80px 395px;
+  background-color: #fff8f2;
 
-export const Card = styled.div`
-  background-color: ${colors.txtColor};
-  border-radius: 8px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+  @media (max-width: 1600px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 280px;
+  }
+  @media (max-width: 1500px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 220px;
+  }
 
-export const CardImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-`
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 180px;
+  }
 
-export const CardTitle = styled.h3`
-  margin-top: 0.5rem;
-  font-size: 1.25rem;
-  color: ${colors.bgColor};
-`
+  @media (max-width: 1300px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 120px;
+  }
 
-export const CardDescription = styled.p`
-  margin-top: 0.25rem;
-  font-size: 1rem;
-`
-
-export const CardPrice = styled.p`
-  margin-top: 0.5rem;
-  font-size: 1.25rem;
-  font-weight: bold;
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 80px 60px;
+  }
 `

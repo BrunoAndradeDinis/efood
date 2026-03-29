@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import backgroundImage from '../../assets/images/header-background.png'
+import backgroundImage from '../../images/header-background.png'
 import { colors } from '../../styles'
 
 export const HeaderComponent = styled.header`
