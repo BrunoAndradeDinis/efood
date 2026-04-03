@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import backgroundImage from '../../images/header-background.png'
-import { colors } from '../../styles'
+import theme from '../../global/theme'
 
 export const HeaderComponent = styled.header`
   display: flex;
@@ -17,7 +17,7 @@ export const HeaderComponent = styled.header`
   a {
     margin-top: 40px;
     margin-bottom: 64px;
-    color: ${colors.txtColor};
+    color: ${theme.Colors.text};
     font-size: 18px;
     font-weight: 900;
   }
@@ -44,6 +44,6 @@ export const HeaderContent = styled.div`
 `
 
 export const Titulo = styled.h1`
-  font-size: 36px;
+  font-size: ${theme.fontSizes.headingXl};
   text-align: center;
 `

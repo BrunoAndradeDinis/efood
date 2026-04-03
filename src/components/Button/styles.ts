@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
+import theme from '../../global/theme'
 
 type ButtonProps = {
   $displayMode?: 'fullWidth' | 'inlineBlock'
@@ -15,8 +16,9 @@ const baseStyleButton = css<ButtonProps>`
   font-weight: 700;
   text-align: center;
   background-color: ${(props) =>
-    props.$themeMode === 'primary' ? '#E66767' : '#FFEBD9'};
-  color: ${(props) => (props.$themeMode === 'primary' ? '#FFF8F2' : '#E66767')};
+    props.$themeMode === 'primary' ? theme.Colors.text : theme.Colors.primary};
+  color: ${(props) =>
+    props.$themeMode === 'primary' ? theme.Colors.primary : theme.Colors.text};
   border: none;
 `
 

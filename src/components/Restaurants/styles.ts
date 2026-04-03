@@ -1,33 +1,24 @@
 import styled from 'styled-components'
+import theme from '../../global/theme'
 
 export const RestaurantsContainer = styled.div`
+  padding: 80px 0 120px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 80px;
-  padding: 80px 395px;
-  background-color: #fff8f2;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  row-gap: 48px;
 
-  @media (max-width: 1600px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 280px;
-  }
-  @media (max-width: 1500px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 220px;
+  background-color: ${theme.Colors.background};
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 16px;
   }
 
-  @media (max-width: 1400px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 180px;
-  }
-
-  @media (max-width: 1300px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 120px;
-  }
-
-  @media (max-width: 1200px) {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 80px 60px;
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
   }
 `

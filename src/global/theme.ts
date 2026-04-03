@@ -1,4 +1,4 @@
-export default {
+const theme = {
   Colors: {
     primary: '#FFEBD9',
     text: '#E66767',
@@ -19,3 +19,5 @@ export default {
     tablet: '1079px'
   }
 }
+
+export default theme

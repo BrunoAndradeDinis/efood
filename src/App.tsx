@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter } from 'react-router-dom'
-import { GlobalStyle } from './styles'
+import GlobalStyle from './global/globalStyle'
 import Header from './components/Header'
 import Rotas from './pages/routes'
 import Footer from './components/Footer'

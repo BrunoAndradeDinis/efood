@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import theme from '../../global/theme'
 
 export const FooterContainer = styled.footer`
-  background-color: #ffebd9;
+  background-color: ${theme.Colors.primary};
   padding: 40px;
   text-align: center;
   display: flex;
@@ -35,8 +35,8 @@ export const SocialMediaIcons = styled.ul`
 `
 
 export const FooterText = styled.p`
-  color: ${colors.txtColor};
-  font-size: 10px;
+  color: ${theme.Colors.text};
+  font-size: ${theme.fontSizes.body};
   margin: 0;
   width: 100%;
   max-width: 480px;

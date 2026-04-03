@@ -1,12 +1,12 @@
 import styled from 'styled-components'
+import theme from '../../global/theme'
 
 type CardProps = {
   $card: 'primary' | 'second'
 }
 
 export const CardContainer = styled.div`
-  max-width: 472px;
-  height: 498px;
+  max-width: 100%;
   display: block;
   position: relative;
 `
@@ -16,17 +16,15 @@ export const ContainerTags = styled.div`
   top: 16px;
   right: 16px;
   z-index: 1;
-  display: flex;
-  gap: 8px;
 `
 
 export const CardImage = styled.div<CardProps>`
   width: 100%;
   border: 1px solid transparent;
-  background-color: ${(props) => (props.$card === 'primary' ? '' : '#E66767')};
-  height: ${(props) => (props.$card === 'primary' ? '298px' : '298px')};
+  background-color: ${(props) =>
+    props.$card === 'primary' ? '' : theme.Colors.text};
+  height: ${(props) => (props.$card === 'primary' ? '300px' : '200px')};
   padding: ${(props) => (props.$card === 'primary' ? 0 : '8px 8px 0 8px')};
-  overflow: hidden;
 `
 
 export const Cover = styled.img`
@@ -39,12 +37,12 @@ export const CardContent = styled.div<CardProps>`
   display: block;
   padding: 8px;
   background-color: ${(props) =>
-    props.$card === 'primary' ? '#fff' : '#E66767'};
+    props.$card === 'primary' ? theme.Colors.white : theme.Colors.text};
   border-right: 1px solid;
   border-bottom: 1px solid;
   border-left: 1px solid;
   border-color: ${(props) =>
-    props.$card === 'primary' ? '#E66767' : 'transparent'};
+    props.$card === 'primary' ? theme.Colors.text : 'transparent'};
 `
 
 export const CardHeader = styled.header`
@@ -55,10 +53,10 @@ export const CardHeader = styled.header`
 `
 
 export const Title = styled.h2<CardProps>`
-  color: ${(props) => (props.$card === 'primary' ? '#E66767' : '#FFEBD9')};
+  color: ${(props) =>
+    props.$card === 'primary' ? theme.Colors.text : theme.Colors.primary};
   font-size: 18px;
   font-weight: 700;
-  margin: 0;
 `
 
 export const RatingContainer = styled.div`
@@ -68,18 +66,19 @@ export const RatingContainer = styled.div`
 `
 
 export const Rating = styled.span`
-  color: #e66767;
+  color: ${theme.Colors.text};
   font-size: 18px;
   font-weight: 700;
 `
 
 export const Star = styled.span`
   font-size: 18px;
-  color: #e66767;
+  color: ${theme.Colors.text};
 `
 
 export const Text = styled.p<CardProps>`
-  color: ${(props) => (props.$card === 'primary' ? '#E66767' : '#FFEBD9')};
+  color: ${(props) =>
+    props.$card === 'primary' ? theme.Colors.text : theme.Colors.primary};
   font-size: 14px;
   font-weight: 400;
   line-height: 22px;
