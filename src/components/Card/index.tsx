@@ -72,6 +72,13 @@ const Card = ({
     )
   }
 
+  function renderText(description: string) {
+    if (description.length > 140) {
+      return description.slice(0, 145) + '...'
+    }
+    return description
+  }
+
   return (
     <CardContainer>
       <CardImage $card={card}>
@@ -88,7 +95,7 @@ const Card = ({
           </RatingContainer>
         </CardHeader>
 
-        <Text $card={card}>{description}</Text>
+        <Text $card={card}>{renderText(description)}</Text>
 
         {renderTypeButton(kindButton)}
       </CardContent>

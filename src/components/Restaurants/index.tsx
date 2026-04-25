@@ -10,9 +10,12 @@ const Restaurantes = () => {
 
   useEffect(() => {
     setLoading(true)
-    const restaurants = getAllRestaurants()
-    setData(restaurants)
-    setLoading(false)
+    async function fetchData() {
+      const restaurants = await getAllRestaurants()
+      setData(restaurants)
+      setLoading(false)
+    }
+    fetchData()
   }, [])
 
   if (loading) return <h3>Carregando...</h3>
@@ -21,7 +24,6 @@ const Restaurantes = () => {
     <>
       <RestaurantsContainer>
         {data.map((item: RestaurantsDataProps) => (
-          // <div>
           <Card
             card="primary"
             kindButton="link"
@@ -35,7 +37,6 @@ const Restaurantes = () => {
             cover={item.capa}
             key={item.id}
           />
-          // </div>
         ))}
       </RestaurantsContainer>
     </>

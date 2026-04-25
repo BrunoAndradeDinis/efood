@@ -1,16 +1,19 @@
-import { mockRestaurants } from '../utils/mockData'
 import { RestaurantsDataProps } from '../types'
 
-export const getFeaturedRestaurants = (): RestaurantsDataProps[] => {
-  return mockRestaurants.filter((restaurant) => restaurant.destacado)
+const API = 'https://api-ebac.vercel.app/api/efood/restaurantes'
+
+export const getAllRestaurants = async (): Promise<RestaurantsDataProps[]> => {
+  const res = await fetch(API)
+  if (!res.ok) return []
+  const data = await res.json()
+  return data as RestaurantsDataProps[]
 }
 
-export const getAllRestaurants = (): RestaurantsDataProps[] => {
-  return mockRestaurants
-}
-
-export const getRestaurantById = (
+export const getRestaurantById = async (
   id: number
-): RestaurantsDataProps | undefined => {
-  return mockRestaurants.find((restaurant) => restaurant.id === id)
+): Promise<RestaurantsDataProps | undefined> => {
+  const res = await fetch(API)
+  if (!res.ok) return undefined
+  const data = (await res.json()) as RestaurantsDataProps[]
+  return data.find((r) => r.id === id)
 }
