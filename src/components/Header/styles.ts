@@ -35,6 +35,14 @@ export const HeaderProductComponent = styled(HeaderComponent)`
   justify-content: space-between;
   align-items: center;
   padding: 20px 170px;
+
+  span {
+    margin-top: 40px;
+    margin-bottom: 64px;
+    color: ${theme.Colors.text};
+    font-size: 18px;
+    font-weight: 900;
+  }
 `
 
 export const HeaderContent = styled.div`

@@ -1,29 +1,17 @@
-import { useEffect, useState } from 'react'
-import { getAllRestaurants } from '../../services/api'
+import { useGetFeaturedRestaurantsQuery } from '../../services/api'
 import { RestaurantsDataProps } from '../../types'
 import Card from '../Card'
 import { RestaurantsContainer } from './styles'
 
 const Restaurantes = () => {
-  const [data, setData] = useState<RestaurantsDataProps[]>([])
-  const [loading, setLoading] = useState(true)
+  const { data, isLoading } = useGetFeaturedRestaurantsQuery()
 
-  useEffect(() => {
-    setLoading(true)
-    async function fetchData() {
-      const restaurants = await getAllRestaurants()
-      setData(restaurants)
-      setLoading(false)
-    }
-    fetchData()
-  }, [])
-
-  if (loading) return <h3>Carregando...</h3>
+  if (isLoading) return <h3>Carregando...</h3>
 
   return (
     <>
       <RestaurantsContainer>
-        {data.map((item: RestaurantsDataProps) => (
+        {data?.map((item: RestaurantsDataProps) => (
           <Card
             card="primary"
             kindButton="link"

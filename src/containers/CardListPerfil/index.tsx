@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { getRestaurantById } from '../../services/api'
-import { MenuDataProps, RestaurantsDataProps } from '../../types'
+import { useDispatch } from 'react-redux'
+
+import { useGetRestaurantQuery } from '../../services/api'
+import { add, open } from '../../store/reducers/cart'
+import { MenuDataProps } from '../../types'
+
 import Card from '../../components/Card'
 import Modal from '../../components/Modal'
+
 import { Container } from '../../global/globalStyle'
 import {
   BannerContainer,
@@ -15,22 +20,12 @@ import {
 } from './styles'
 
 const CardListPerfil = () => {
-  const [restaurant, setRestaurant] = useState<RestaurantsDataProps | null>(
-    null
-  )
   const [selectedItemId, setSelectedItemId] = useState<number | null>(null)
   const [showModal, setShowModal] = useState(false)
 
   const { id } = useParams()
-
-  useEffect(() => {
-    async function fetchRestaurant() {
-      if (!id) return
-      const r = await getRestaurantById(parseInt(id))
-      if (r) setRestaurant(r)
-    }
-    fetchRestaurant()
-  }, [id])
+  const { data } = useGetRestaurantQuery(id!)
+  const dispatch = useDispatch()
 
   function handleCardClick(itemId: number) {
     setSelectedItemId(itemId)
@@ -43,9 +38,9 @@ const CardListPerfil = () => {
   }
 
   function addItemToCart(item: MenuDataProps) {
-    // Integrar com o carrinho se existir; por enquanto apenas log
-    console.log('Adicionar ao carrinho:', item)
+    dispatch(add(item))
     setShowModal(false)
+    dispatch(open())
   }
 
   function renderProductList(products: MenuDataProps[]) {
@@ -72,9 +67,9 @@ const CardListPerfil = () => {
   }
 
   function renderModal() {
-    if (!selectedItemId || !restaurant) return null
+    if (!selectedItemId || !data) return null
 
-    const selectedItem = restaurant.cardapio.find(
+    const selectedItem = data.cardapio.find(
       (item) => item.id === selectedItemId
     )
 
@@ -94,25 +89,25 @@ const CardListPerfil = () => {
     )
   }
 
-  if (!restaurant) return <h3>Carregando...</h3>
+  if (!data) return <h3>Carregando...</h3>
 
   return (
     <ContainerListPerfil>
       {renderModal()}
 
       <BannerContainer
-        key={restaurant.id}
-        style={{ backgroundImage: `url(${restaurant.capa})` }}
+        key={data.id}
+        style={{ backgroundImage: `url(${data.capa})` }}
       >
         <Container>
-          <SubTitle>{restaurant?.tipo}</SubTitle>
-          <Title>{restaurant?.titulo}</Title>
+          <SubTitle>{data?.tipo}</SubTitle>
+          <Title>{data?.titulo}</Title>
         </Container>
       </BannerContainer>
 
       <Container>
-        <CardListContainer key={restaurant.id}>
-          {renderProductList(restaurant.cardapio)}
+        <CardListContainer key={data.id}>
+          {renderProductList(data.cardapio)}
         </CardListContainer>
       </Container>
     </ContainerListPerfil>

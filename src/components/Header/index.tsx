@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
 import logo from '../../images/logo.png'
 import {
   HeaderComponent,
@@ -10,6 +14,12 @@ import { useLocation } from 'react-router-dom'
 
 const Header = () => {
   const { pathname } = useLocation()
+  const { items } = useSelector((state: RootReducer) => state.cart)
+  const dispatch = useDispatch()
+
+  function handleOpenCart() {
+    dispatch(open())
+  }
 
   return pathname === '/' ? (
     <HeaderComponent>
@@ -26,7 +36,9 @@ const Header = () => {
       <Link to="/">
         <img src={logo} alt="Logo" />
       </Link>
-      <Link to="/">0 produto(s) no carrinho</Link>
+      <span onClick={handleOpenCart} style={{ cursor: 'pointer' }}>
+        {items.length} produto(s) no carrinho
+      </span>
     </HeaderProductComponent>
   )
 }
